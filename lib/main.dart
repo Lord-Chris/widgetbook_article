@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:widgetbook_test/app/app.locator.dart';
 import 'package:widgetbook_test/app/app.router.dart';
 
 void main() {
+  setupLocator();
   runApp(const MyApp());
 }
 
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       designSize: const Size(375, 812),
       builder: (context, child) {
         return MaterialApp(
-          title: 'Flutter Demo',
+          title: 'Widgetbook Test',
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
