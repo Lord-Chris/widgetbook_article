@@ -21,7 +21,11 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Widgetbook Test',
           theme: ThemeData(
-            primarySwatch: Colors.blue,
+            primaryColor: Colors.black,
+            colorScheme: const ColorScheme.light(
+              secondary: Colors.black,
+              primary: Colors.black,
+            ),
           ),
           navigatorKey: StackedService.navigatorKey,
           onGenerateRoute: StackedRouter().onGenerateRoute,
