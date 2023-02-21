@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:widgetbook_test/ui/shared/app_button.dart';
 
 class OnboardingView extends StatelessWidget {
   const OnboardingView({super.key});
@@ -95,24 +96,13 @@ class OnboardingView extends StatelessWidget {
               ),
               Expanded(
                 flex: 2,
-                child: MaterialButton(
-                  onPressed: () {},
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    side: const BorderSide(
-                      color: Colors.black,
-                      width: 2,
-                    ),
-                  ),
-                  height: 48,
-                  color: Colors.white,
-                  child: const Text(
-                    "Sign In",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16,
-                    ),
-                  ),
+                child: AppButton(
+                  label: "Sign In",
+                  borderColor: Colors.black,
+                  buttonColor: Colors.white,
+                  labelColor: Colors.black,
+                  hasBorder: true,
+                  onTap: () {},
                 ),
               ),
               const SizedBox(
@@ -120,21 +110,14 @@ class OnboardingView extends StatelessWidget {
               ),
               Expanded(
                 flex: 3,
-                child: MaterialButton(
-                  onPressed: () {},
-                  color: Colors.black,
-                  textColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+                child: AppButton(
+                  label: "Get Started",
+                  labelColor: Colors.white,
+                  suffixWidget: const Icon(
+                    Icons.arrow_forward,
+                    color: Colors.white,
                   ),
-                  height: 48,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Text("Get Started"),
-                      Icon(Icons.arrow_forward),
-                    ],
-                  ),
+                  onTap: () {},
                 ),
               ),
               const SizedBox(
