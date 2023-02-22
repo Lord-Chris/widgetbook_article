@@ -21,10 +21,21 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Widgetbook Test',
           theme: ThemeData(
-            primaryColor: Colors.black,
+            scaffoldBackgroundColor: Colors.white,
+            appBarTheme: const AppBarTheme(
+              backgroundColor: Colors.white,
+              iconTheme: IconThemeData(color: Colors.black),
+            ),
             colorScheme: const ColorScheme.light(
               secondary: Colors.black,
               primary: Colors.black,
+            ),
+          ),
+          darkTheme: ThemeData(
+            scaffoldBackgroundColor: Colors.black,
+            colorScheme: const ColorScheme.light(
+              secondary: Colors.white,
+              primary: Colors.white,
             ),
           ),
           navigatorKey: StackedService.navigatorKey,
