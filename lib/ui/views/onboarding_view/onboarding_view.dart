@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
+import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 import 'package:widgetbook_test/ui/shared/app_button.dart';
 import 'package:widgetbook_test/ui/views/onboarding_view/onboarding_viewmodel.dart';
+
+@WidgetbookUseCase(name: 'Onboarding View', type: OnboardingView)
+Widget onboarding2ViewUseCase(BuildContext context) {
+  return const OnboardingView();
+}
 
 class OnboardingView extends StatelessWidget {
   const OnboardingView({super.key});

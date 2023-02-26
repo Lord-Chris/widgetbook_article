@@ -1,5 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:widgetbook/widgetbook.dart' hide WidgetbookUseCase;
+import 'package:widgetbook_annotation/widgetbook_annotation.dart';
+
+@WidgetbookUseCase(name: 'App Button', type: AppButton)
+Widget appButtonViewUseCase(BuildContext context) {
+  return Center(
+    child: AppButton(
+      label: context.knobs.text(
+        label: "Label",
+        initialValue: "Test Button",
+        description: "The label of this button",
+      ),
+      hasBorder: context.knobs.boolean(label: "Has border"),
+      borderRadius:
+          context.knobs.nullableNumber(label: "Border Radius")?.toDouble(),
+      labelSize: context.knobs.nullableNumber(label: "Label size")?.toDouble(),
+      isCollapsed: context.knobs.boolean(label: "Is collapsed"),
+      prefixWidget: context.knobs.options(label: "Prefix Widget", options: [
+        const Option(label: "None", value: null),
+        const Option(label: "Back Icon", value: Icon(Icons.arrow_back)),
+        const Option(label: "Forward Icon", value: Icon(Icons.arrow_forward)),
+        const Option(label: "Favourite", value: Icon(Icons.favorite)),
+      ]),
+      suffixWidget: context.knobs.options(label: "Suffix Widget", options: [
+        const Option(label: "None", value: null),
+        const Option(label: "Back Icon", value: Icon(Icons.arrow_back)),
+        const Option(label: "Forward Icon", value: Icon(Icons.arrow_forward)),
+        const Option(label: "Favourite", value: Icon(Icons.favorite)),
+      ]),
+      fontWeight: context.knobs.options(label: "Font weight", options: [
+        const Option(label: "Regular", value: FontWeight.normal),
+        const Option(label: "Medium", value: FontWeight.w500),
+        const Option(label: "Bold", value: FontWeight.bold),
+      ]),
+    ),
+  );
+}
 
 class AppButton extends StatelessWidget {
   final String label;

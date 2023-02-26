@@ -1,5 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:widgetbook/widgetbook.dart' hide WidgetbookUseCase;
+import 'package:widgetbook_annotation/widgetbook_annotation.dart';
+
+@WidgetbookUseCase(name: 'Home Item', type: HomeItem)
+Widget homeItemViewUseCase(BuildContext context) {
+  return Center(
+    child: HomeItem(
+      body: context.knobs.text(label: "Body"),
+      tag: context.knobs.text(label: "Tag"),
+      isLiked: context.knobs.boolean(label: "Is Liked"),
+      price: context.knobs.text(label: "Price"),
+      isAdded: context.knobs.boolean(label: "Is Added"),
+      image: context.knobs.options(label: "Image", options: [
+        const Option(label: "Image 1", value: "assets/Frame 2.png"),
+        const Option(label: "Image 2", value: "assets/Frame 5.png"),
+        const Option(label: "Image 3", value: "assets/Frame 1.png"),
+      ]),
+    ),
+  );
+}
 
 class HomeItem extends StatelessWidget {
   final String image;
@@ -21,6 +41,7 @@ class HomeItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -74,18 +95,18 @@ class HomeItem extends StatelessWidget {
         Container(
           alignment: Alignment.center,
           padding: const EdgeInsets.all(11),
-          decoration: const BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.vertical(
+          decoration: BoxDecoration(
+            color: theme.colorScheme.primary,
+            borderRadius: const BorderRadius.vertical(
               bottom: Radius.circular(10),
             ),
           ),
           child: Text(
             isAdded ? "Add to bag" : "Added",
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.normal,
-              color: Colors.white,
+              color: theme.colorScheme.onPrimary,
             ),
           ),
         ),

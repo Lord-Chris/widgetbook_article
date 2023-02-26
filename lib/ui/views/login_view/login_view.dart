@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
+import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 import '../../shared/app_button.dart';
 import '../../shared/app_textfield.dart';
 import 'login_viewmodel.dart';
+
+@WidgetbookUseCase(name: 'Login View', type: LoginView)
+Widget loginViewViewUseCase(BuildContext context) {
+  return const LoginView();
+}
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return ViewModelBuilder<LoginViewModel>.reactive(
       viewModelBuilder: () => LoginViewModel(),
       builder: (context, model, _) {
@@ -33,7 +40,6 @@ class LoginView extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 32.spMin,
                       fontWeight: FontWeight.w600,
-                      color: Colors.black,
                     ),
                   ),
                   SizedBox(height: 9.h),
@@ -42,7 +48,7 @@ class LoginView extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 16.spMin,
                       fontWeight: FontWeight.normal,
-                      color: Colors.black.withOpacity(.67),
+                      color: theme.colorScheme.primary.withOpacity(.67),
                     ),
                   ),
                   SizedBox(height: 64.h),
@@ -61,7 +67,7 @@ class LoginView extends StatelessWidget {
                       onTap: model.togglePasswordVisibility,
                       child: Icon(
                         Icons.visibility_outlined,
-                        color: Colors.black.withOpacity(.67),
+                        color: theme.colorScheme.primary.withOpacity(.67),
                       ),
                     ),
                   ),
@@ -93,7 +99,6 @@ class LoginView extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 14.spMin,
                           fontWeight: FontWeight.normal,
-                          color: Colors.black,
                         ),
                         children: const [
                           TextSpan(text: "Not a member? "),

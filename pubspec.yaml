@@ -35,13 +35,16 @@ dependencies:
   flutter_screenutil: ^5.6.1
   stacked: ^3.1.0+3
   stacked_services: ^0.9.9
+  widgetbook_annotation: ^2.1.0
 
 dev_dependencies:
   build_runner: ^2.3.3
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
-  stacked_generator: ^0.9.3
+  stacked_generator: 
+  widgetbook: ^2.4.1
+  widgetbook_generator: ^2.4.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

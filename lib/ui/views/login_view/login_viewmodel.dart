@@ -18,6 +18,6 @@ class LoginViewModel extends BaseViewModel {
   Future<void> logIn() async {
     setBusy(true);
     await Future.delayed(const Duration(seconds: 2));
-    _navigationService.navigateTo(Routes.dashboardView);
+    _navigationService.navigateTo(Routes.homeView);
   }
 }

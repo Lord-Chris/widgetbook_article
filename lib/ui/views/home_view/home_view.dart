@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 import 'package:widgetbook_test/ui/shared/app_textfield.dart';
 
 import '../../shared/home_item.dart';
 
-class DashboardView extends StatelessWidget {
-  const DashboardView({super.key});
+@WidgetbookUseCase(name: 'Home View', type: HomeView)
+Widget homeViewViewUseCase(BuildContext context) {
+  return const HomeView();
+}
+
+class HomeView extends StatelessWidget {
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +33,8 @@ class DashboardView extends StatelessWidget {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: 20,
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 200.w,
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 200,
               childAspectRatio: .62,
               mainAxisSpacing: 20,
               crossAxisSpacing: 20,
