@@ -15,7 +15,9 @@ Widget appButtonViewUseCase(BuildContext context) {
       hasBorder: context.knobs.boolean(label: "Has border"),
       borderRadius:
           context.knobs.nullableNumber(label: "Border Radius")?.toDouble(),
-      labelSize: context.knobs.nullableNumber(label: "Label size")?.toDouble(),
+      labelSize: context.knobs
+          .nullableNumber(label: "Label size", initialValue: null)
+          ?.toDouble(),
       isCollapsed: context.knobs.boolean(label: "Is collapsed"),
       prefixWidget: context.knobs.options(label: "Prefix Widget", options: [
         const Option(label: "None", value: null),

@@ -10,9 +10,13 @@ Widget appTextFieldViewUseCase(BuildContext context) {
       hint: context.knobs.text(label: "Hint"),
       initialValue: context.knobs.text(label: "Initial Value"),
       obscureText: context.knobs.boolean(label: "Obscure text"),
-      minLines: context.knobs.nullableNumber(label: "Min Lines")?.toInt(),
-      maxLines: context.knobs.nullableNumber(label: "Max Lines")?.toInt(),
-      enabled: context.knobs.boolean(label: "Is Enabled"),
+      minLines: context.knobs
+          .nullableNumber(label: "Min Lines", initialValue: 1)
+          ?.toInt(),
+      maxLines: context.knobs
+          .nullableNumber(label: "Max Lines", initialValue: 1)
+          ?.toInt(),
+      enabled: context.knobs.boolean(label: "Is Enabled", initialValue: true),
       prefix: context.knobs.options(label: "Prefix Widget", options: [
         const Option(label: "None", value: null),
         const Option(label: "Back Icon", value: Icon(Icons.arrow_back)),
@@ -84,11 +88,9 @@ class AppTextField extends StatelessWidget {
       onChanged: onChanged,
       minLines: minLines,
       maxLength: maxLength,
-      cursorColor: Colors.black,
       style: TextStyle(
         fontSize: 16.spMin,
         fontWeight: FontWeight.normal,
-        color: Colors.black,
       ),
       decoration: InputDecoration(
         hintText: hint,
