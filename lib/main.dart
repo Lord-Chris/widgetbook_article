@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 import 'package:widgetbook_test/app/app.locator.dart';
-import 'package:widgetbook_test/app/app.router.dart';
+import 'package:widgetbook_test/ui/views/home.dart';
 
 void main() {
   setupLocator();
@@ -32,8 +32,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: getLightTheme(),
           darkTheme: getDarkTheme(),
-          navigatorKey: StackedService.navigatorKey,
-          onGenerateRoute: StackedRouter().onGenerateRoute,
+          home: const HomeView(),
         );
       },
     );
@@ -42,30 +41,34 @@ class MyApp extends StatelessWidget {
 
 @WidgetbookTheme(name: "Light theme", isDefault: true)
 ThemeData getLightTheme() {
-  return ThemeData(
+  return ThemeData.light(useMaterial3: true).copyWith(
     scaffoldBackgroundColor: Colors.white,
     appBarTheme: const AppBarTheme(
       backgroundColor: Colors.white,
       iconTheme: IconThemeData(color: Colors.black),
     ),
-    colorScheme: const ColorScheme.light(
+    colorScheme: ColorScheme.light(
       secondary: Colors.black,
-      primary: Colors.black,
+      primary: Colors.yellow,
+      background: Colors.white,
+      onBackground: Colors.grey.shade200,
     ),
   );
 }
 
 @WidgetbookTheme(name: "Dark theme")
 ThemeData getDarkTheme() {
-  return ThemeData(
+  return ThemeData.dark(useMaterial3: true).copyWith(
     scaffoldBackgroundColor: Colors.black,
     appBarTheme: const AppBarTheme(
       backgroundColor: Colors.black,
       iconTheme: IconThemeData(color: Colors.white),
     ),
-    colorScheme: const ColorScheme.dark(
+    colorScheme: ColorScheme.dark(
       secondary: Colors.white,
-      primary: Colors.white,
+      primary: Colors.yellow,
+      background: Colors.black,
+      onBackground: Colors.grey.shade800,
     ),
   );
 }
