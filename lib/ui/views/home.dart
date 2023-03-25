@@ -1,6 +1,17 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:flutter/material.dart';
+import 'package:widgetbook/widgetbook.dart' hide WidgetbookUseCase;
+import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 import '../shared/home_item.dart';
+
+@WidgetbookUseCase(name: "Home View", type: HomeView)
+Widget homeViewUseCase(BuildContext context) {
+  return HomeView(
+    isActive: context.knobs.boolean(label: "Is Active"),
+  );
+}
 
 const asset1 = "assets/Rectangle.png";
 const asset2 = "assets/Rectangle (1).png";

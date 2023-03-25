@@ -1,4 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:widgetbook/widgetbook.dart' hide WidgetbookUseCase;
+import 'package:widgetbook_annotation/widgetbook_annotation.dart';
+import 'package:widgetbook_test/ui/views/home.dart';
+
+@WidgetbookUseCase(name: 'Home Item', type: HomeItem)
+Widget homeItemViewUseCase(BuildContext context) {
+  return Center(
+    child: HomeItem(
+      name: context.knobs.text(label: "Name"),
+      amount: context.knobs.number(label: "Amount").toDouble(),
+      pickUp: context.knobs.text(label: "Pick Up"),
+      dropOff: context.knobs.text(label: "Drop Off"),
+      image: context.knobs.options(label: "Image", options: [
+        const Option(label: "Image 1", value: asset1),
+        const Option(label: "Image 2", value: asset2),
+      ]),
+    ),
+  );
+}
 
 class HomeItem extends StatelessWidget {
   final String name;
