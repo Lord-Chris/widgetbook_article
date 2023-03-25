@@ -1,116 +1,143 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:widgetbook/widgetbook.dart' hide WidgetbookUseCase;
-import 'package:widgetbook_annotation/widgetbook_annotation.dart';
-
-@WidgetbookUseCase(name: 'Home Item', type: HomeItem)
-Widget homeItemViewUseCase(BuildContext context) {
-  return Center(
-    child: HomeItem(
-      body: context.knobs.text(label: "Body"),
-      tag: context.knobs.text(label: "Tag"),
-      isLiked: context.knobs.boolean(label: "Is Liked"),
-      price: context.knobs.text(label: "Price"),
-      isAdded: context.knobs.boolean(label: "Is Added"),
-      image: context.knobs.options(label: "Image", options: [
-        const Option(label: "Image 1", value: "assets/Frame 2.png"),
-        const Option(label: "Image 2", value: "assets/Frame 5.png"),
-        const Option(label: "Image 3", value: "assets/Frame 1.png"),
-      ]),
-    ),
-  );
-}
 
 class HomeItem extends StatelessWidget {
+  final String name;
   final String image;
-  final String body;
-  final String tag;
-  final bool isLiked;
-  final String price;
-  final bool isAdded;
+  final double amount;
+  final String pickUp;
+  final String dropOff;
 
   const HomeItem({
     Key? key,
+    required this.name,
     required this.image,
-    required this.body,
-    required this.tag,
-    required this.isLiked,
-    required this.price,
-    required this.isAdded,
+    required this.amount,
+    required this.pickUp,
+    required this.dropOff,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Expanded(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: Image.asset(
-              image,
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        SizedBox(height: 4.h),
-        Row(
-          children: [
-            Expanded(
-              child: Text(
-                body,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
+    final colors = Theme.of(context).colorScheme;
+    return Card(
+      elevation: 2,
+      color: colors.onBackground,
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 13, 15, 12),
+            child: Row(
+              children: [
+                Container(
+                  height: 44,
+                  width: 44,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    image: DecorationImage(image: AssetImage(image)),
+                  ),
                 ),
-              ),
+                const SizedBox(width: 15),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        name,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 17,
+                        ),
+                      ),
+                      const SizedBox(height: 6),
+                      Container(
+                        padding: const EdgeInsets.fromLTRB(10, 2, 10, 2),
+                        decoration: BoxDecoration(
+                          color: colors.primary,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const Text(
+                          'Item Size: 3kg - 10kg',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 10,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 15),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      '₦ $amount',
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 17,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    const Text(
+                      '2.2 km',
+                      style: TextStyle(
+                        fontWeight: FontWeight.normal,
+                        fontSize: 15,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
-            SizedBox(width: 10.w),
-            Icon(
-              isLiked ? Icons.favorite : Icons.favorite_border,
-              color: isLiked ? Colors.green : Colors.black,
-            ),
-          ],
-        ),
-        SizedBox(height: 4.h),
-        Text(
-          tag,
-          style: const TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.normal,
           ),
-        ),
-        Align(
-          alignment: Alignment.centerRight,
-          child: Text(
-            price,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
+          Container(
+            color: colors.background,
+            padding: const EdgeInsets.fromLTRB(16, 19, 16, 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Pick up'.toUpperCase(),
+                  style: TextStyle(
+                    color: colors.secondary.withOpacity(.3),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 11,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  pickUp,
+                  style: TextStyle(
+                    color: colors.secondary.withOpacity(.8),
+                    fontWeight: FontWeight.normal,
+                    fontSize: 17,
+                  ),
+                ),
+                const SizedBox(height: 13),
+                const Divider(height: 1),
+                const SizedBox(height: 23),
+                Text(
+                  'Drop off'.toUpperCase(),
+                  style: TextStyle(
+                    color: colors.secondary.withOpacity(.3),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 11,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  dropOff,
+                  style: TextStyle(
+                    color: colors.secondary.withOpacity(.8),
+                    fontWeight: FontWeight.normal,
+                    fontSize: 17,
+                  ),
+                ),
+              ],
             ),
-          ),
-        ),
-        SizedBox(height: 10.h),
-        Container(
-          alignment: Alignment.center,
-          padding: const EdgeInsets.all(11),
-          decoration: BoxDecoration(
-            color: theme.colorScheme.primary,
-            borderRadius: const BorderRadius.vertical(
-              bottom: Radius.circular(10),
-            ),
-          ),
-          child: Text(
-            isAdded ? "Add to bag" : "Added",
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.normal,
-              color: theme.colorScheme.onPrimary,
-            ),
-          ),
-        ),
-      ],
+          )
+        ],
+      ),
     );
   }
 }
